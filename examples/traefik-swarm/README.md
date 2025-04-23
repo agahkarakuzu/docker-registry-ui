@@ -18,6 +18,9 @@ The `.env` file makes it easy to perform all the replacements necessary.
 
 ```shell
 DOMAIN=contoso.com
+# Leave blank if not using Let's Encrypt
+RESOLVER=letsencrypt
+# Email address for Let's Encrypt
 EMAIL=postmaster@contoso.com
 ```
 

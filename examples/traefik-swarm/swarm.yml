@@ -106,9 +106,9 @@ services:
         # Enable TLS
         - "traefik.http.routers.traefik-https.tls=true"
         # Use the 'letsencrypt' (Let's Encrypt) resolver created above
-        # - "traefik.http.routers.traefik-https.tls.certresolver=letsencrypt"
+        # - "traefik.http.routers.traefik-https.tls.certresolver=${RESOLVER}letsencrypt"
         # Use no resolver when statically loading certificates
-        - "traefik.http.routers.traefik-https.tls.certresolver="
+        - "traefik.http.routers.traefik-https.tls.certresolver=${RESOLVER}"
 
         ### Middlewares
         ## 'compress' middleware - https://doc.traefik.io/traefik/middlewares/http/compress/
@@ -187,7 +187,7 @@ services:
         # Enable TLS
         - "traefik.http.routers.registry.tls=true"
         # Set the certificate resolver, set value to nothing if using a static certificate
-        - "traefik.http.routers.registry.tls.certresolver="
+        - "traefik.http.routers.registry.tls.certresolver=${RESOLVER}"
         # Use the 'compress' and 'ratelimit' middlewares
         - "traefik.http.routers.registry.middlewares=compress@swarm,ratelimit@swarm"
 
@@ -199,7 +199,7 @@ services:
         # Enable TLS
         - "traefik.http.routers.registry-authd.tls=true"
         # Set the certificate resolver, set value to nothing if using a static certificate
-        - "traefik.http.routers.registry-authd.tls.certresolver="
+        - "traefik.http.routers.registry-authd.tls.certresolver=${RESOLVER}"
         # Use the 'compress', 'ratelimit' and 'registry-basic-auth', defined below
         - "traefik.http.routers.registry-authd.middlewares=compress@swarm,ratelimit@swarm,registry-basic-auth"
 
@@ -247,7 +247,7 @@ services:
         # Enable TLS
         - "traefik.http.routers.ui.tls=true"
         # Set the certificate resolver, set value to nothing if using a static certificate
-        - "traefik.http.routers.ui.tls.certresolver="
+        - "traefik.http.routers.ui.tls.certresolver=${RESOLVER}"
 
 volumes:
   # Create a volume to store the certificates
